@@ -1,7 +1,7 @@
 // CreatPatient Component for add new patient
 
 // Import Modules
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PatientForm from "./PatientForm";
 
@@ -19,6 +19,10 @@ const CreatePatient = () => {
     lastAppointment: '',
     nextAppointment: '',
   });
+
+  useEffect(()=> {
+    console.log("hello");
+  })
   const onSubmit = (patientObject) => {
     axios
       .post("http://localhost:4000/patient/create-patient", patientObject)
