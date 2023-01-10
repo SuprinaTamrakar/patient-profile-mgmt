@@ -16,8 +16,8 @@ const PatientForm = (props) => {
     city: Yup.string().required("Required"),
     birthday: Yup.date().required("Required"),
     email: Yup.string().email("You have entered an invalid email address."),
-    lastAppointment: Yup.date().max(Yup.date.today, "Date is invalid"),
-    nextAppointment: Yup.date().min(Date.today, "Date is invalid."),
+    lastAppointment: Yup.date().max(Date(), "Date is invalid"),
+    nextAppointment: Yup.date().min(Date(), "Date is invalid."),
   });
   console.log(props);
   return (
@@ -25,6 +25,7 @@ const PatientForm = (props) => {
       <Formik {...props} validationSchema={validationSchema}>
         <Form>
           <FormGroup>
+            <label>Name:</label>
             <Field name="name" type="text" className="form-control" />
             <ErrorMessage
               name="name"
@@ -33,6 +34,7 @@ const PatientForm = (props) => {
             />
           </FormGroup>
           <FormGroup>
+            <label>Gender:</label>
             <Field name="gender" type="text" className="form-control" />
             <ErrorMessage
               name="gender"
@@ -41,6 +43,7 @@ const PatientForm = (props) => {
             />
           </FormGroup>
           <FormGroup>
+          <label>Phone Number:</label>
             <Field name="phoneNumber" type="number" className="form-control" />
             <ErrorMessage
               name="phoneNumber"
@@ -49,6 +52,7 @@ const PatientForm = (props) => {
             />
           </FormGroup>
           <FormGroup>
+          <label>ZIP code:</label>
             <Field name="zipCode" type="number" className="form-control" />
             <ErrorMessage
               name="zipCode"
@@ -57,6 +61,7 @@ const PatientForm = (props) => {
             />
           </FormGroup>
           <FormGroup>
+          <label>Street Address:</label>
             <Field name="streetAddress" type="text" className="form-control" />
             <ErrorMessage
               name="streetAddress"
@@ -65,6 +70,7 @@ const PatientForm = (props) => {
             />
           </FormGroup>
           <FormGroup>
+          <label>City:</label>
             <Field name="city" type="text" className="form-control" />
             <ErrorMessage
               name="city"
@@ -73,6 +79,7 @@ const PatientForm = (props) => {
             />
           </FormGroup>
           <FormGroup>
+          <label>Birthday:</label>
             <Field name="birthday" type="date" className="form-control" />
             <ErrorMessage
               name="birthday"
@@ -81,6 +88,7 @@ const PatientForm = (props) => {
             />
           </FormGroup>
           <FormGroup>
+          <label>Email:</label>
             <Field name="email" type="text" className="form-control" />
             <ErrorMessage
               name="email"
@@ -89,7 +97,12 @@ const PatientForm = (props) => {
             />
           </FormGroup>
           <FormGroup>
-            <Field name="lastAppointment" type="date" className="form-control" />
+          <label>Last Appointment:</label>
+            <Field
+              name="lastAppointment"
+              type="date"
+              className="form-control"
+            />
             <ErrorMessage
               name="lastAppointment"
               className="d-block invalid-feedback"
@@ -97,7 +110,12 @@ const PatientForm = (props) => {
             />
           </FormGroup>
           <FormGroup>
-            <Field name="nextAppointment" type="date" className="form-control" />
+          <label>Next Appointment:</label>
+            <Field
+              name="nextAppointment"
+              type="date"
+              className="form-control"
+            />
             <ErrorMessage
               name="nextAppointment"
               className="d-block invalid-feedback"
