@@ -71,14 +71,14 @@ const EditPatient = (props) => {
       })
       .catch((err) => console.log(err));
   },[props.match.params.id]);
-  // Return student form
+  // Return patient form
   return (
     <PatientForm
       initialValues={formValues}
       onSubmit={onSubmit}
       enableReinitialize
     >
-      Update Student
+      Update Patient
     </PatientForm>
   );
 };
