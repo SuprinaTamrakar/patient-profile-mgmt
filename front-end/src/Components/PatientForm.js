@@ -4,12 +4,13 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { FormGroup, Button } from "react-bootstrap";
 
 const PatientForm = (props) => {
+  const phoneRegExp =
+    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Required"),
     gender: Yup.string().required("Required"),
-    phoneNumber: Yup.number()
-      .positive("Invalid phone number.")
-      .integer("Invalid phone number.")
+    phoneNumber: Yup.string()
+      .matches(phoneRegExp, "Invalid phone number.")
       .required("Required"),
     zipCode: Yup.number().required("Required"),
     streetAddress: Yup.string().required("Required"),
@@ -43,7 +44,7 @@ const PatientForm = (props) => {
             />
           </FormGroup>
           <FormGroup>
-          <label>Phone Number:</label>
+            <label>Phone Number:</label>
             <Field name="phoneNumber" type="number" className="form-control" />
             <ErrorMessage
               name="phoneNumber"
@@ -52,7 +53,7 @@ const PatientForm = (props) => {
             />
           </FormGroup>
           <FormGroup>
-          <label>ZIP code:</label>
+            <label>ZIP code:</label>
             <Field name="zipCode" type="number" className="form-control" />
             <ErrorMessage
               name="zipCode"
@@ -61,7 +62,7 @@ const PatientForm = (props) => {
             />
           </FormGroup>
           <FormGroup>
-          <label>Street Address:</label>
+            <label>Street Address:</label>
             <Field name="streetAddress" type="text" className="form-control" />
             <ErrorMessage
               name="streetAddress"
@@ -70,7 +71,7 @@ const PatientForm = (props) => {
             />
           </FormGroup>
           <FormGroup>
-          <label>City:</label>
+            <label>City:</label>
             <Field name="city" type="text" className="form-control" />
             <ErrorMessage
               name="city"
@@ -79,7 +80,7 @@ const PatientForm = (props) => {
             />
           </FormGroup>
           <FormGroup>
-          <label>Birthday:</label>
+            <label>Birthday:</label>
             <Field name="birthday" type="date" className="form-control" />
             <ErrorMessage
               name="birthday"
@@ -88,7 +89,7 @@ const PatientForm = (props) => {
             />
           </FormGroup>
           <FormGroup>
-          <label>Email:</label>
+            <label>Email:</label>
             <Field name="email" type="text" className="form-control" />
             <ErrorMessage
               name="email"
@@ -97,7 +98,7 @@ const PatientForm = (props) => {
             />
           </FormGroup>
           <FormGroup>
-          <label>Last Appointment:</label>
+            <label>Last Appointment:</label>
             <Field
               name="lastAppointment"
               type="date"
@@ -110,7 +111,7 @@ const PatientForm = (props) => {
             />
           </FormGroup>
           <FormGroup>
-          <label>Next Appointment:</label>
+            <label>Next Appointment:</label>
             <Field
               name="nextAppointment"
               type="date"

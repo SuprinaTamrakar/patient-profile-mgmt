@@ -2,19 +2,21 @@
 import React from "react";
 
 // Import Bootstrap
-import { Nav, Navbar, Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 
 // Import Custom CSS
 import "./App.css";
 
 // Import from react-router-dom
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Import other React Component
 import CreatePatient from "./Components/create-patient.component";
 import EditPatient from "./Components/edit-patient.component";
 import PatientList from "./Components/patient-list.component";
+import { NavBar } from "./Common/NavBar";
+import { CREATE_PATIENT, EDIT_PATIENT, PATIENT_LIST } from "./Constants/Routes";
 
 // App Component
 const App = () => {
@@ -22,29 +24,7 @@ const App = () => {
     <Router>
       <div className="App">
         <header className="App-header">
-          <Navbar bg="dark" variant="dark">
-            <Container>
-              <Navbar.Brand>
-                <Link to={"/create-patient"} className="nav-link">
-                  Patient Profile Management App
-                </Link>
-              </Navbar.Brand>
-
-              <Nav className="justify-content-end">
-                <Nav>
-                  <Link to={"/create-patient"} className="nav-link">
-                    Create Patient
-                  </Link>
-                </Nav>
-
-                <Nav>
-                  <Link to={"/patient-list"} className="nav-link">
-                    Patient List
-                  </Link>
-                </Nav>
-              </Nav>
-            </Container>
-          </Navbar>
+          <NavBar/>
         </header>
 
         <Container>
@@ -52,10 +32,10 @@ const App = () => {
             <Col md={12}>
               <div className="wrapper">
                 <Routes>
-                  <Route exact path="/" element={<CreatePatient />} />
-                  <Route path="/create-patient" element={<CreatePatient />} />
-                  <Route path="/edit-patient/:id" element={<EditPatient />} />
-                  <Route path="/patient-list" element={<PatientList />} />
+                  <Route exact path="/" element={<PatientList />} />
+                  <Route path={CREATE_PATIENT} element={<CreatePatient />} />
+                  <Route path={EDIT_PATIENT} element={<EditPatient />} />
+                  <Route path={PATIENT_LIST} element={<PatientList />} />
                 </Routes>
               </div>
             </Col>
