@@ -19,10 +19,10 @@ const PatientList = () => {
 
   const DataTable = () => {
     return patients.map((res, i) => {
-        return <PatientTableRow obj = {res} key={i}/>;
+      return <PatientTableRow obj={res} key={i} />;
     });
   };
-  return(
+  return (
     <div className="table-wrapper">
       <Table striped bordered hover>
         <thead>
