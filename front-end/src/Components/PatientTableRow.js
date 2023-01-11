@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-import { EDIT_PATIENT } from "./Constants/Routes";
+import { EDIT_PATIENT } from ".././Constants/Routes";
 
 const PatientTableRow = (props) => {
   const {
