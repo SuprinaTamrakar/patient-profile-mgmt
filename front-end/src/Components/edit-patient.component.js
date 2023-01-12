@@ -4,9 +4,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PatientForm from "./PatientForm";
+import { useParams } from "react-router-dom";
+import * as moment from "moment";
 
 // EditPatient Component
 const EditPatient = (props) => {
+  const routeParams = useParams();
+
   const [formValues, setFormValues] = useState({
     name: "",
     gender: "",
@@ -24,8 +28,7 @@ const EditPatient = (props) => {
   const onSubmit = (patientObject) => {
     axios
       .put(
-        "http://localhost:4000/patients/update-patient/" +
-          props.match.params.id,
+        "http://localhost:4000/patients/update-patient/" + routeParams.id,
         patientObject
       )
       .then((res) => {
@@ -40,9 +43,7 @@ const EditPatient = (props) => {
   // Load data from server and reinitialize patient form
   useEffect(() => {
     axios
-      .get(
-        "http://localhost:4000/patients/update-patient/" + props.match.params.id
-      )
+      .get("http://localhost:4000/patients/update-patient/" + routeParams.id)
       .then((res) => {
         const {
           name,
@@ -56,6 +57,11 @@ const EditPatient = (props) => {
           lastAppointment,
           nextAppointment,
         } = res.data;
+
+        const formattedBirthday = moment(birthday).format("YYYY-MM-DD");
+        const formattedLastAppointment = moment(lastAppointment).format("YYYY-MM-DD");
+        const formattedNextAppointment = moment(nextAppointment).format("YYYY-MM-DD");
+
         setFormValues({
           name,
           gender,
@@ -63,14 +69,14 @@ const EditPatient = (props) => {
           zipCode,
           streetAddress,
           city,
-          birthday,
+          birthday: formattedBirthday,
           email,
-          lastAppointment,
-          nextAppointment,
+          lastAppointment: formattedLastAppointment,
+          nextAppointment: formattedNextAppointment,
         });
       })
       .catch((err) => console.log(err));
-  },[props.match.params.id]);
+  });
   // Return patient form
   return (
     <PatientForm

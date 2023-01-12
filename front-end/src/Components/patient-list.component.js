@@ -23,7 +23,7 @@ const PatientList = () => {
     });
   };
   return (
-    <div className="table-wrapper">
+    <div>
       <Table striped bordered hover>
         <thead>
           <tr>

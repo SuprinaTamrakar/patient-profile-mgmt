@@ -24,10 +24,9 @@ const App = () => {
     <Router>
       <div className="App">
         <header className="App-header">
-          <NavBar/>
+          <NavBar />
         </header>
-
-        <Container>
+        <div className="app-table">
           <Row>
             <Col md={12}>
               <div className="wrapper">
@@ -40,7 +39,7 @@ const App = () => {
               </div>
             </Col>
           </Row>
-        </Container>
+        </div>
       </div>
     </Router>
   );
