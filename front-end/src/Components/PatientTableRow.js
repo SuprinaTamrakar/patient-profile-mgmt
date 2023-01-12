@@ -1,9 +1,9 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-import { EDIT_PATIENT } from "./Constants/Routes";
+import * as moment from 'moment';
+import axios from "axios";
 
 const PatientTableRow = (props) => {
   const {
@@ -20,6 +20,10 @@ const PatientTableRow = (props) => {
     nextAppointment,
   } = props.obj;
 
+  const formattedBirthday= moment(birthday).format("YYYY-MM-DD");
+  const formattedLastAppointment= moment(lastAppointment).format("YYYY-MM-DD");
+  const formattedNextAppointment= moment(nextAppointment).format("YYYY-MM-DD");
+  
   const deletePatient = () => {
     axios
       .delete("http://localhost:4000/patients/delete-patient/" + _id)
@@ -32,23 +36,28 @@ const PatientTableRow = (props) => {
       .catch((err) => alert("Something went wrong"));
   };
 
+  const navigate = useNavigate();
+
+  const editPatient = () => {
+    navigate("/update-patient/" + _id);
+  };
+
   return (
     <tr>
       <td>{name}</td>
       <td>{gender}</td>
       <td>{phoneNumber}</td>
-      <td>{name}</td>
       <td>{zipCode}</td>
       <td>{streetAddress}</td>
       <td>{city}</td>
-      <td>{birthday}</td>
+      <td>{formattedBirthday}</td>
       <td>{email}</td>
-      <td>{lastAppointment}</td>
-      <td>{nextAppointment}</td>
+      <td>{formattedLastAppointment}</td>
+      <td>{formattedNextAppointment}</td>
       <td>
-        <Link className="edit-link" to={EDIT_PATIENT + _id}>
+        <Button onClick={editPatient} size="sm" variant="primary">
           Edit
-        </Link>
+        </Button>
         <Button onClick={deletePatient} size="sm" variant="danger">
           Delete
         </Button>

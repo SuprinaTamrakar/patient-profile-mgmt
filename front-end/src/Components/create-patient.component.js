@@ -1,7 +1,7 @@
-// CreatPatient Component for add new patient
+// CreatePatient Component for add new patient
 
 // Import Modules
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import PatientForm from "./PatientForm";
 
@@ -20,12 +20,9 @@ const CreatePatient = () => {
     nextAppointment: '',
   });
 
-  useEffect(()=> {
-    console.log("hello");
-  })
   const onSubmit = (patientObject) => {
     axios
-      .post("http://localhost:4000/patient/create-patient", patientObject)
+      .post("http://localhost:4000/patients/create-patient", patientObject)
       .then((response) => {
         if (response.status === 200) alert("Patient successfully created");
         else Promise.reject();
