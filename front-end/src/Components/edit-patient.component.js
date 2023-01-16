@@ -6,6 +6,7 @@ import axios from "axios";
 import PatientForm from "./PatientForm";
 import { useParams } from "react-router-dom";
 import * as moment from "moment";
+import { NavBar } from ".././Common/NavBar";
 
 // EditPatient Component
 const EditPatient = (props) => {
@@ -59,8 +60,10 @@ const EditPatient = (props) => {
         } = res.data;
 
         const formattedBirthday = moment(birthday).format("YYYY-MM-DD");
-        const formattedLastAppointment = moment(lastAppointment).format("YYYY-MM-DD");
-        const formattedNextAppointment = moment(nextAppointment).format("YYYY-MM-DD");
+        const formattedLastAppointment =
+          moment(lastAppointment).format("YYYY-MM-DD");
+        const formattedNextAppointment =
+          moment(nextAppointment).format("YYYY-MM-DD");
 
         setFormValues({
           name,
@@ -79,13 +82,17 @@ const EditPatient = (props) => {
   });
   // Return patient form
   return (
-    <PatientForm
-      initialValues={formValues}
-      onSubmit={onSubmit}
-      enableReinitialize
-    >
-      Update Patient
-    </PatientForm>
+    <>
+      <NavBar />
+      <h3>Update Patient</h3>
+      <PatientForm
+        initialValues={formValues}
+        onSubmit={onSubmit}
+        enableReinitialize
+      >
+        Update Patient
+      </PatientForm>
+    </>
   );
 };
 

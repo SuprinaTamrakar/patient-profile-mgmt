@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Table } from "react-bootstrap";
 import PatientTableRow from "./PatientTableRow";
+import { NavBar } from ".././Common/NavBar";
 
 const PatientList = () => {
   const [patients, setPatients] = useState([]);
@@ -23,26 +24,30 @@ const PatientList = () => {
     });
   };
   return (
-    <div>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Gender</th>
-            <th>Phone Number</th>
-            <th>ZIP Code</th>
-            <th>Street Address</th>
-            <th>City</th>
-            <th>Birthday</th>
-            <th>Email</th>
-            <th>Last Appointment</th>
-            <th>Next Appointment</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>{DataTable()}</tbody>
-      </Table>
-    </div>
+    <>
+      <NavBar />
+      <h3>Patient List</h3>
+      <div>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Gender</th>
+              <th>Phone Number</th>
+              <th>ZIP Code</th>
+              <th>Street Address</th>
+              <th>City</th>
+              <th>Birthday</th>
+              <th>Email</th>
+              <th>Last Appointment</th>
+              <th>Next Appointment</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>{DataTable()}</tbody>
+        </Table>
+      </div>
+    </>
   );
 };
 

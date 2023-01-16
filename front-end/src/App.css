@@ -50,3 +50,12 @@ input::-webkit-inner-spin-button {
   margin: auto;
   margin-top: 20px;
 }
+
+.sign-in-container{
+  width: 500px;
+  margin: auto;
+}
+
+h3{
+  text-align: center;
+}
