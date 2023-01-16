@@ -15,8 +15,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CreatePatient from "./Components/create-patient.component";
 import EditPatient from "./Components/edit-patient.component";
 import PatientList from "./Components/patient-list.component";
+import SignUp from "./Components/sign-up";
 import SignIn from "./Components/sign-in";
-import { CREATE_PATIENT, EDIT_PATIENT, PATIENT_LIST } from "./Constants/Routes";
+
+import { CREATE_PATIENT, EDIT_PATIENT, PATIENT_LIST, SIGN_IN } from "./Constants/Routes";
 
 // App Component
 const App = () => {
@@ -31,7 +33,8 @@ const App = () => {
             <Col md={12}>
               <div className="wrapper">
                 <Routes>
-                  <Route exact path="/" element={<SignIn />} />
+                  <Route exact path="/" element={<SignUp />} />
+                  <Route path={SIGN_IN} element={<SignIn />} />
                   <Route path={CREATE_PATIENT} element={<CreatePatient />} />
                   <Route path={EDIT_PATIENT} element={<EditPatient />} />
                   <Route path={PATIENT_LIST} element={<PatientList />} />
