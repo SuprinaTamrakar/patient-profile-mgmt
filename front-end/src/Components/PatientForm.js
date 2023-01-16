@@ -123,7 +123,7 @@ const PatientForm = (props) => {
               component="span"
             />
           </FormGroup>
-          <Button variant="danger" size="lg" block="block" type="submit">
+          <Button variant="primary" size="lg" block="block" type="submit">
             {props.children}
           </Button>
         </Form>
