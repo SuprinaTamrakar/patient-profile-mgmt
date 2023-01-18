@@ -6,6 +6,7 @@ let dbConfig = require('./database/db');
 
 // Express Route
 const patientRoute = require('../back-end/routes/patient.route')
+const userRoute = require('../back-end/routes/user.route')
 
 // Connecting MongoDB Database
 mongoose.Promise = global.Promise;
@@ -26,6 +27,7 @@ extended: true
 }));
 app.use(cors());
 app.use('/patients', patientRoute)
+app.use('/',userRoute)
 
 
 // PORT
