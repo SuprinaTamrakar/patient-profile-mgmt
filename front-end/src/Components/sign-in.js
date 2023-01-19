@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { FormGroup, Button } from "react-bootstrap";
-import { PATIENT_LIST } from ".././Constants/Routes";
+import { PATIENT_LIST, SIGN_UP } from ".././Constants/Routes";
 
 const SignIn = (props) => {
   const [formValues] = useState({
@@ -18,6 +18,11 @@ const SignIn = (props) => {
   });
 
   const navigate = useNavigate();
+
+  const signUp = () => {
+    navigate(SIGN_UP);
+  };
+
   const [authenticated, setauthenticated] = useState(
     localStorage.getItem(localStorage.getItem("authenticated") || false)
   );
@@ -67,6 +72,9 @@ const SignIn = (props) => {
           </Button>
         </Form>
       </Formik>
+      <u className="forgot-password text-right" onClick={signUp}>
+        Not registered yet?
+      </u>
     </div>
   );
 };
