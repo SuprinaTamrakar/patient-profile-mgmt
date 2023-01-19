@@ -9,7 +9,7 @@ const PatientList = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/patients/")
+      .get("http://localhost:4000/patients")
       .then(({ data }) => {
         setPatients(data);
       })
