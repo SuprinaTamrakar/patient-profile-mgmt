@@ -20,7 +20,8 @@ router.post("/sign-up", async (req, res, next) => {
     if (error) {
       return next(error);
     } else {
-      res.json(data);
+      return res.status(200).send(true);
+      // res.json(data);
     }
   });
 });
