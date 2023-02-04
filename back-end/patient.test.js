@@ -10,26 +10,26 @@ jest.mock("./models/Patient", () => {
     find: jest.fn().mockImplementation((callback) => {
       callback(null, [
         {
-          name: "John Doe",
+          name: "Suprina Tamrakar",
           gender: "Male",
           phoneNumber: "1234567890",
           zipCode: 123456,
           streetAddress: "1 Main St",
           city: "New York",
           birthday: new Date("01-01-2000"),
-          email: "johndoe@email.com",
+          email: "suprina@email.com",
           lastAppointment: new Date("01-01-2021"),
           nextAppointment: new Date("01-01-2022"),
         },
         {
-          name: "Jane Doe",
+          name: "Alina Tamrakar",
           gender: "Female",
           phoneNumber: "0987654321",
           zipCode: 654321,
           streetAddress: "2 Main St",
           city: "Los Angeles",
           birthday: new Date("01-01-1999"),
-          email: "janedoe@email.com",
+          email: "alina@email.com",
           lastAppointment: new Date("01-01-2022"),
           nextAppointment: new Date("01-01-2023"),
         },
@@ -45,14 +45,14 @@ jest.mock("./models/Patient", () => {
     it("creates a new patient", async () => {
       const req = {
         body: {
-          name: "John Doe",
+          name: "Suprina Tamrakar",
           gender: "Male",
           phoneNumber: "1234567890",
           zipCode: 12345,
           streetAddress: "1 Main St",
           city: "New York",
           birthday: new Date(),
-          email: "johndoe@email.com",
+          email: "suprina@email.com",
           lastAppointment: new Date(),
           nextAppointment: new Date(),
         },
@@ -75,26 +75,26 @@ describe("getPatients", () => {
       expect(error).toBeNull();
       expect(data).toEqual([
         {
-          name: "John Doe",
+          name: "Suprina Tamrakar",
           gender: "Male",
           phoneNumber: "1234567890",
           zipCode: 123456,
           streetAddress: "1 Main St",
           city: "New York",
           birthday: new Date("01-01-2000"),
-          email: "johndoe@email.com",
+          email: "suprina@email.com",
           lastAppointment: new Date("01-01-2021"),
           nextAppointment: new Date("01-01-2022"),
         },
         {
-          name: "Jane Doe",
+          name: "Alina Tamrakar",
           gender: "Female",
           phoneNumber: "0987654321",
           zipCode: 654321,
           streetAddress: "2 Main St",
           city: "Los Angeles",
           birthday: new Date("01-01-1999"),
-          email: "janedoe@email.com",
+          email: "alina@email.com",
           lastAppointment: new Date("01-01-2022"),
           nextAppointment: new Date("01-01-2023"),
         },
@@ -106,14 +106,14 @@ describe("getPatients", () => {
 describe("getPatient", () => {
   it("should return a single patient", async () => {
     const fakePatient = {
-      name: "John Doe",
+      name: "Suprina Tamrakar",
       gender: "Male",
       phoneNumber: "555-555-5555",
       zipCode: 12345,
       streetAddress: "123 Main St",
       city: "Anytown",
       birthday: new Date("2000-01-01"),
-      email: "johndoe@email.com",
+      email: "suprina@email.com",
       lastAppointment: new Date("2022-12-31"),
       nextAppointment: new Date("2023-01-01"),
     };
@@ -159,14 +159,14 @@ describe("getPatient", () => {
 describe("updatePatient", () => {
   it("should update a patient", async () => {
     const fakePatient = {
-      name: "John Doe",
+      name: "Suprina Tamrakar",
       gender: "Male",
       phoneNumber: "555-555-5555",
       zipCode: 12345,
       streetAddress: "123 Main St",
       city: "Anytown",
       birthday: "1999-01-01",
-      email: "johndoe@example.com",
+      email: "suprina@email.com",
       lastAppointment: "2022-01-01",
       nextAppointment: "2022-02-01",
     };
