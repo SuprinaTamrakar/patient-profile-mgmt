@@ -17,8 +17,9 @@ import EditPatient from "./Components/edit-patient.component";
 import PatientList from "./Components/patient-list.component";
 import SignUp from "./Components/sign-up";
 import SignIn from "./Components/sign-in";
+import SignOut from "./Components/sign-out";
 
-import { CREATE_PATIENT, EDIT_PATIENT, PATIENT_LIST, SIGN_IN } from "./Constants/Routes";
+import { CREATE_PATIENT, EDIT_PATIENT, PATIENT_LIST, SIGN_IN, SIGN_OUT } from "./Constants/Routes";
 
 // App Component
 const App = () => {
@@ -38,6 +39,7 @@ const App = () => {
                   <Route path={CREATE_PATIENT} element={<CreatePatient />} />
                   <Route path={EDIT_PATIENT} element={<EditPatient />} />
                   <Route path={PATIENT_LIST} element={<PatientList />} />
+                  <Route path={SIGN_OUT} element={<SignOut />} />
                 </Routes>
               </div>
             </Col>

@@ -1,7 +1,11 @@
 let mongoose = require("mongoose"),
   express = require("express"),
   router = express.Router(),
-  bcrypt = require("bcrypt");
+  bcrypt = require("bcrypt"),
+  jsonwebtoken = require("jsonwebtoken"),
+  dotenv = require("dotenv").config();
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const { response } = require("express");
 // User Model
@@ -21,7 +25,6 @@ router.post("/sign-up", async (req, res, next) => {
       return next(error);
     } else {
       return res.status(200).send(true);
-      // res.json(data);
     }
   });
 });
@@ -37,7 +40,13 @@ router.post("/sign-in", async (req, res, next) => {
   if (!validPassword) {
     return res.status(400).send("Incorrect password.");
   }
-  return res.status(200).send(true);
+  const generatedToken = jsonwebtoken.sign({ user: "admin" }, JWT_SECRET);
+  return res.status(200).json({ token: generatedToken });
+});
+
+router.post("/sign-out", (req, res) => {
+  localStorage.removeItem("token");
+  res.json({ message: "Successfully logged out" });
 });
 
 module.exports = router;

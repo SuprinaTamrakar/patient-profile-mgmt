@@ -8,6 +8,14 @@ import { useParams } from "react-router-dom";
 import * as moment from "moment";
 import { NavBar } from ".././Common/NavBar";
 
+const token = localStorage.getItem("token");
+const headers = {
+  headers: {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json",
+  },
+};
+
 // EditPatient Component
 const EditPatient = (props) => {
   const routeParams = useParams();
@@ -30,21 +38,25 @@ const EditPatient = (props) => {
     axios
       .put(
         "http://localhost:4000/patients/update-patient/" + routeParams.id,
-        patientObject
+        patientObject,
+        headers
       )
       .then((res) => {
         if (res.status === 200) {
           alert("Patient successfully updated");
-          props.history.push("/patient-list");
+          window.location.href = "/patient-list";
         } else Promise.reject();
       })
-      .catch((err) => alert("Something went wrong"));
+      .catch((err) => console.log(err));
   };
 
   // Load data from server and reinitialize patient form
   useEffect(() => {
     axios
-      .get("http://localhost:4000/patients/update-patient/" + routeParams.id)
+      .get(
+        "http://localhost:4000/patients/update-patient/" + routeParams.id,
+        headers
+      )
       .then((res) => {
         const {
           name,
@@ -79,7 +91,7 @@ const EditPatient = (props) => {
         });
       })
       .catch((err) => console.log(err));
-  });
+  }, [routeParams.id]);
   // Return patient form
   return (
     <>
