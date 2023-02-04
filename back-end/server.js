@@ -5,7 +5,7 @@ let bodyParser = require('body-parser');
 let dbConfig = require('./database/db');
 
 // Express Route
-const patientRoute = require('../back-end/routes/patient.route')
+const patientRoute = require('../back-end/routes/patient')
 const userRoute = require('../back-end/routes/user.route')
 
 // Connecting MongoDB Database

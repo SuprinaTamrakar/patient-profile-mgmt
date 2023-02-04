@@ -20,13 +20,21 @@ const PatientTableRow = (props) => {
     nextAppointment,
   } = props.obj;
 
+  const token = localStorage.getItem("token");
+  const headers = {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  }
+
   const formattedBirthday= moment(birthday).format("YYYY-MM-DD");
   const formattedLastAppointment= moment(lastAppointment).format("YYYY-MM-DD");
   const formattedNextAppointment= moment(nextAppointment).format("YYYY-MM-DD");
   
   const deletePatient = () => {
     axios
-      .delete("http://localhost:4000/patients/delete-patient/" + _id)
+      .delete("http://localhost:4000/patients/delete-patient/" + _id, headers)
       .then((res) => {
         if (res.status === 200) {
           alert("Patient successfully deleted");

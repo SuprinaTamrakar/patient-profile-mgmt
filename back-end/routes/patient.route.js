@@ -1,12 +1,19 @@
 let mongoose = require("mongoose"),
   express = require("express"),
-  router = express.Router();
+  jwt = require("jsonwebtoken"),
+  router = express.Router(),
+  dotenv = require("dotenv").config();
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // Patient Model
 let patientSchema = require("../models/Patient");
 
+// Middleware
+const auth = require("../middleware/auth");
+
 // CREATE Patient
-router.post("/create-patient", (req, res, next) => {
+router.post("/create-patient", auth, (req, res, next) => {
   patientSchema.create(req.body, (error, data) => {
     if (error) {
       return next(error);
@@ -17,7 +24,7 @@ router.post("/create-patient", (req, res, next) => {
 });
 
 // READ Patients
-router.get("/", (req, res) => {
+router.get("/", auth, (req, res) => {
   patientSchema.find((error, data) => {
     if (error) {
       return next(error);
@@ -31,7 +38,7 @@ router.get("/", (req, res) => {
 router
   .route("/update-patient/:id")
   // Get Single Patient
-  .get((req, res) => {
+  .get(auth, (req, res) => {
     patientSchema.findById(req.params.id, (error, data) => {
       if (error) {
         return next(error);
@@ -42,7 +49,7 @@ router
   })
 
   // Update Patient Data
-  .put((req, res, next) => {
+  .put(auth, (req, res, next) => {
     patientSchema.findByIdAndUpdate(
       req.params.id,
       {
@@ -61,7 +68,7 @@ router
   });
 
 // Delete Patient
-router.delete("/delete-patient/:id", (req, res, next) => {
+router.delete("/delete-patient/:id", auth, (req, res, next) => {
   patientSchema.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
       return next(error);
