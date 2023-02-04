@@ -23,17 +23,16 @@ const SignIn = (props) => {
     navigate(SIGN_UP);
   };
 
-  const [authenticated, setauthenticated] = useState(
-    localStorage.getItem(localStorage.getItem("authenticated") || false)
-  );
   const onSubmit = (userObject) => {
     axios
       .post("http://localhost:4000/sign-in", userObject)
       .then((response) => {
         if (response.status === 200) {
-          setauthenticated(true);
-          localStorage.setItem(authenticated, true);
-          navigate(PATIENT_LIST);
+          const token = response.data["token"];
+          if (token) {
+            localStorage.setItem("token", token);
+            navigate(PATIENT_LIST);
+          }
         } else Promise.reject();
       })
       .catch((err) => alert("Could not sign in."));
@@ -48,7 +47,7 @@ const SignIn = (props) => {
         onSubmit={onSubmit}
       >
         <Form>
-        <h3>Sign In</h3>
+          <h3>Sign In</h3>
           <FormGroup>
             <label>Email:</label>
             <Field name="email" type="text" className="form-control" />

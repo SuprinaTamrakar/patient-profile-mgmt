@@ -8,8 +8,15 @@ const PatientList = () => {
   const [patients, setPatients] = useState([]);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    const headers = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    };
     axios
-      .get("http://localhost:4000/patients")
+      .get("http://localhost:4000/patients", headers)
       .then(({ data }) => {
         setPatients(data);
       })
@@ -44,7 +51,9 @@ const PatientList = () => {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>{DataTable()}</tbody>
+          <tbody>
+            <DataTable />
+          </tbody>
         </Table>
       </div>
     </>
