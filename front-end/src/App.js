@@ -19,16 +19,20 @@ import SignUp from "./Components/sign-up";
 import SignIn from "./Components/sign-in";
 import SignOut from "./Components/sign-out";
 
-import { CREATE_PATIENT, EDIT_PATIENT, PATIENT_LIST, SIGN_IN, SIGN_OUT } from "./Constants/Routes";
+import {
+  CREATE_PATIENT,
+  EDIT_PATIENT,
+  PATIENT_LIST,
+  SIGN_IN,
+  SIGN_OUT,
+} from "./Constants/Routes";
 
 // App Component
 const App = () => {
   return (
     <Router>
       <div className="App">
-        <header className="App-header">
-        
-        </header>
+        <header className="App-header"></header>
         <div className="app-table">
           <Row>
             <Col md={12}>

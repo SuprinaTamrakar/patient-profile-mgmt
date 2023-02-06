@@ -5,8 +5,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import PatientForm from "./PatientForm";
 import { NavBar } from ".././Common/NavBar";
-import { useNavigate } from "react-router-dom";
-import { SIGN_IN } from "../Constants/Routes";
 
 //CreatePatient Component
 const CreatePatient = () => {
@@ -23,10 +21,9 @@ const CreatePatient = () => {
     nextAppointment: "",
   });
 
-  const navigate = useNavigate();
   const token = localStorage.getItem("token");
   if (token === null) {
-    navigate(SIGN_IN);
+    alert("No Token!");
   }
   const headers = {
     headers: {
@@ -43,8 +40,10 @@ const CreatePatient = () => {
         headers
       )
       .then((response) => {
-        if (response.status === 200) alert("Patient successfully created");
-        else Promise.reject();
+        if (response.status === 200) {
+          alert("Patient successfully created");
+          window.location.href = "/patient-list";
+        } else Promise.reject();
       })
       .catch((err) => alert("Something went wrong"));
   };
