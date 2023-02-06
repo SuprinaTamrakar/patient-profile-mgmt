@@ -1,7 +1,5 @@
-// Import Bootstrap
+import React from "react";
 import { Nav, Navbar, Container } from "react-bootstrap";
-
-// Import from react-router-dom
 import { Link } from "react-router-dom";
 
 import { CREATE_PATIENT, PATIENT_LIST, SIGN_OUT } from ".././Constants/Routes";
