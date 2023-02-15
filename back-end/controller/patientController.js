@@ -5,7 +5,7 @@ exports.createPatient = (req, res, next) => {
     if (error) {
       return next(error);
     } else {
-      return next(null, data);
+      return res.json(data);
     }
   });
 };
